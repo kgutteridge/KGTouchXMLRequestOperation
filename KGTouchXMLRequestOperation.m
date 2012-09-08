@@ -34,7 +34,7 @@ static dispatch_queue_t xml_request_operation_processing_queue() {
 }
 
 @interface KGTouchXMLRequestOperation ()
-@property (readwrite, nonatomic, retain) id responseXML;
+@property (readwrite, nonatomic, retain) CXMLDocument* responseXML;
 @property (readwrite, nonatomic, retain) NSError *XMLError;
 
 + (NSSet *)defaultAcceptableContentTypes;
@@ -82,7 +82,7 @@ static dispatch_queue_t xml_request_operation_processing_queue() {
     {
         return nil;
     }    
-    self.acceptableContentTypes = [[self class] defaultAcceptableContentTypes];
+    [[self class] addAcceptableContentTypes:[[self class] defaultAcceptableContentTypes]];
     
     return self;
 }
